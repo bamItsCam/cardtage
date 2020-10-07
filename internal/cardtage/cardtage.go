@@ -73,6 +73,9 @@ func (c *CardtageImpl) Generate() (err error) {
 		if err = mw.ResizeImage(round2Uint(c.Density*c.CardWidthU), round2Uint(c.Density*c.CardHeightU), imagick.FILTER_LANCZOS, 1); err != nil {
 			return err
 		}
+		if err = mw.SetImageResolution(c.Density, c.Density); err != nil {
+			return err
+		}
 	}
 
 	collated := imagick.NewMagickWand()
@@ -97,15 +100,19 @@ func (c *CardtageImpl) Generate() (err error) {
 	if err = collated.SetBackgroundColor(pw); err != nil {
 		return err
 	}
-	if err = collated.ExtentImage(round2Uint(c.Density*c.PageWidthU), round2Uint(c.Density*c.PageHeightU), c.getExtentOffsetX(), c.getExtentOffsetY()); err != nil {
-		return err
-	}
-	if err = collated.SetImageUnits(c.Unit); err != nil {
-		return err
-	}
-	collated.NextImage()
-	if err = collated.ExtentImage(round2Uint(c.Density*c.PageWidthU), round2Uint(c.Density*c.PageHeightU), c.getExtentOffsetX(), c.getExtentOffsetY()); err != nil {
-		return err
+	for true {
+		if err = collated.ExtentImage(round2Uint(c.Density*c.PageWidthU), round2Uint(c.Density*c.PageHeightU), c.getExtentOffsetX(), c.getExtentOffsetY()); err != nil {
+			return err
+		}
+		if err = collated.SetImageUnits(c.Unit); err != nil {
+			return err
+		}
+		if err = collated.SetImageResolution(c.Density, c.Density); err != nil {
+			return err
+		}
+		if !collated.NextImage() {
+			break
+		}
 	}
 
 	fmt.Printf("Writing montage to: '%s'...\n", c.OutFilename)

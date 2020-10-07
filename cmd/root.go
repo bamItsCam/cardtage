@@ -38,7 +38,7 @@ var (
 			cardtage := cardtage.CardtageImpl{
 				InFileGlob:           args[0],
 				OutFilename:          args[1],
-				Density:              100,
+				Density:              density,
 				Unit:                 imagick.RESOLUTION_PIXELS_PER_INCH,
 				CardWidthU:           cardWidthU,
 				CardHeightU:          cardHeightU,
