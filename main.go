@@ -4,6 +4,7 @@ package main
 import (
 	"github.com/bamItsCam/cardtage/cmd"
 	"gopkg.in/gographics/imagick.v2/imagick"
+	"os"
 )
 
 func init() {
@@ -16,7 +17,8 @@ func main() {
 	// Todo: add support for reading a config value that gives quantities per image
 	// Todo: add mm support
 	if err := cmd.Execute(); err != nil {
-		panic(err)
+		//fmt.Println(err.Error())
+		os.Exit(1)
 	}
 
 }

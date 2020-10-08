@@ -5,6 +5,7 @@ import (
 	"github.com/bamItsCam/cardtage/internal/cardtage"
 	"github.com/spf13/cobra"
 	"gopkg.in/gographics/imagick.v2/imagick"
+	"github.com/spf13/pflag"
 )
 
 var (
@@ -18,10 +19,11 @@ var (
 		Use:   "cardtage",
 		Short: "Cardtage tiles images you give it onto an output pdf",
 		Long: `Cardtage does one thing and it does that one thing really-mediocerly.
-				Give it files, tell it how far to space them, and tell it the size of page
-				you'd like to make (like 8.5x11) and tada! A montage of those images.
-				Useful for printing diy playing cards`,
+Give it files, tell it how far to space them, and tell it the size of page
+you'd like to make (like 8.5x11) and tada! A montage of those images.
+Useful for printing diy playing cards.`,
 		Args: cobra.ExactArgs(2),
+		SilenceUsage: true,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			pageWidthU, pageHeightU, err := cardtage.Res2WxH(pageDimensions)
 			if err != nil {

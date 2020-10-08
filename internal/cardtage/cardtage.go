@@ -61,6 +61,9 @@ func (c *CardtageImpl) Generate() (err error) {
 		return err
 	}
 
+	if len(inFilenames) == 0 {
+		return fmt.Errorf("no files found matching the pattern provided")
+	}
 	for _, inFilename := range inFilenames {
 		// set density of the reader
 		if err = mw.SetResolution(c.Density, c.Density); err != nil {
