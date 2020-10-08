@@ -20,8 +20,8 @@ jobs:
           gofmt -l
       - name: Build project
         uses: actions/setup-go@v2
-          with:
-            go-version: '^1.14'
+        with:
+          go-version: '^1.14'
         run: |
           ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
           GOARCH=386 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_386
