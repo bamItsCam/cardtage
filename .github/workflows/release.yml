@@ -19,6 +19,9 @@ jobs:
       - name: Go fmt
         run: |
           gofmt -l
+      - name: Install MagickWand libraries
+        run: |
+          sudo apt-get install -y libmagickwand-dev
       - name: Build project
         run: |
           ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
