@@ -22,9 +22,6 @@ jobs:
       - name: Build project
         run: |
           ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
-          GOARCH=386 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_386
-          GOARCH=386 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_386
-          GOARCH=386 GOOS=windows go build -ldflags "$ldFlags" -v -o bin/cardtage_windows_386
           GOARCH=amd64 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_amd64
           GOARCH=amd64 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_amd64
           GOARCH=amd64 GOOS=windows go build -ldflags "$ldFlags" -v -o bin/cardtage_windows_amd64
