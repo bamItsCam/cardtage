@@ -28,9 +28,7 @@ jobs:
       - name: Build project
         run: |
           ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
-          GOARCH=amd64 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_amd64
           GOARCH=amd64 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_amd64
-          GOARCH=amd64 GOOS=windows go build -ldflags "$ldFlags" -v -o bin/cardtage_windows_amd64
 
           echo "C_VERSION=$(bin/cardtage_cardtage_linux_amd64 version)" >> $GITHUB_ENV
           echo "cardtage version $C_VERSION successfully built"
@@ -57,6 +55,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./my-artifact.zip
-          asset_name: my-artifact.zip
-          asset_content_type: application/zip
+          asset_path: bin/cardtage_linux_amd64
+          asset_name: cardtage_linux_amd64
+          asset_content_type: application/octet-stream
