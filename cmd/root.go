@@ -9,12 +9,12 @@ import (
 
 var (
 	// Used for flags.
-	density float64
-	border float64
-	pageDimensions string
+	density          float64
+	border           float64
+	pageDimensions   string
 	marginDimensions string
-	cardDimensions string
-	rootCmd = &cobra.Command{
+	cardDimensions   string
+	rootCmd          = &cobra.Command{
 		Use:   "cardtage",
 		Short: "Cardtage tiles images you give it onto an output pdf",
 		Long: `Cardtage does one thing and it does that one thing really-mediocerly.
@@ -36,12 +36,12 @@ var (
 				return fmt.Errorf("error: %s", err)
 			}
 			cardtage := cardtage.CardtageImpl{
-				InFileGlob:           args[0],
-				OutFilename:          args[1],
-				Density:              density,
-				Unit:                 imagick.RESOLUTION_PIXELS_PER_INCH,
-				CardWidthU:           cardWidthU,
-				CardHeightU:          cardHeightU,
+				InFileGlob:        args[0],
+				OutFilename:       args[1],
+				Density:           density,
+				Unit:              imagick.RESOLUTION_PIXELS_PER_INCH,
+				CardWidthU:        cardWidthU,
+				CardHeightU:       cardHeightU,
 				PageWidthU:        pageWidthU,
 				PageHeightU:       pageHeightU,
 				PageMarginWidthU:  marginWidthU,
@@ -53,7 +53,6 @@ var (
 			}
 			return nil
 		},
-
 	}
 )
 

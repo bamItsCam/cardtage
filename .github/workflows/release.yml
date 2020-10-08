@@ -1,0 +1,61 @@
+on:
+  push:
+    branches:
+      - master
+
+name: Upload Release Asset
+
+jobs:
+  build:
+    name: Upload Release Asset
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Go fmt
+          uses: actions/setup-go@v2
+            with:
+              go-version: '^1.14'
+          run: |
+            gofmt -l
+      - name: Build project
+        uses: actions/setup-go@v2
+          with:
+            go-version: '^1.14'
+        run: |
+          ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
+          GOARCH=386 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_386
+          GOARCH=386 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_386
+          GOARCH=386 GOOS=windows go build -ldflags "$ldFlags" -v -o bin/cardtage_windows_386
+          GOARCH=amd64 GOOS=darwin go build -ldflags "$ldFlags" -v -o bin/cardtage_darwin_amd64
+          GOARCH=amd64 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_amd64
+          GOARCH=amd64 GOOS=windows go build -ldflags "$ldFlags" -v -o bin/cardtage_windows_amd64
+
+          echo "C_VERSION=$(bin/cardtage_cardtage_linux_amd64 version)" >> $GITHUB_ENV
+          echo "cardtage version $C_VERSION successfully built"
+      name: Create Tag
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag $C_VERSION
+          git push origin $C_VERSION
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.$C_VERSION }}
+          release_name: Release ${{ env.$C_VERSION }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./my-artifact.zip
+          asset_name: my-artifact.zip
+          asset_content_type: application/zip

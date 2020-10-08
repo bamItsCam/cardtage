@@ -20,8 +20,8 @@ type CardtageImpl struct {
 	PageHeightU       float64
 	PageMarginWidthU  float64
 	PageMarginHeightU float64
-	CardWidthU float64
-	CardHeightU float64
+	CardWidthU        float64
+	CardHeightU       float64
 	CardBorderU       float64
 }
 
@@ -41,16 +41,16 @@ func (c *CardtageImpl) getTileGeo() (string, error) {
 }
 
 func (c *CardtageImpl) getThumbGeo() string {
-	borderPx := uint(c.CardBorderU*c.Density)
+	borderPx := uint(c.CardBorderU * c.Density)
 	return fmt.Sprintf("+%d+%d", borderPx, borderPx)
 }
 
-func (c *CardtageImpl) getExtentOffsetX() (int) {
-	return int(-c.PageMarginWidthU *c.Density)
+func (c *CardtageImpl) getExtentOffsetX() int {
+	return int(-c.PageMarginWidthU * c.Density)
 }
 
-func (c *CardtageImpl) getExtentOffsetY() (int) {
-	return int(-c.PageMarginWidthU *c.Density)
+func (c *CardtageImpl) getExtentOffsetY() int {
+	return int(-c.PageMarginWidthU * c.Density)
 }
 
 func (c *CardtageImpl) Generate() (err error) {
