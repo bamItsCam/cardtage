@@ -30,7 +30,7 @@ jobs:
           ldFlags="-X github.com/bamItsCam/cardtage/internal/version.Patch=$GITHUB_RUN_NUMBER"
           GOARCH=amd64 GOOS=linux go build -ldflags "$ldFlags" -v -o bin/cardtage_linux_amd64
 
-          echo "C_VERSION=$(bin/cardtage_cardtage_linux_amd64 version)" >> $GITHUB_ENV
+          echo "C_VERSION=$(bin/cardtage_linux_amd64 version)" >> $GITHUB_ENV
           echo "cardtage version $C_VERSION successfully built"
       - name: Create Tag
         env:
