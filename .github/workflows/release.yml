@@ -43,8 +43,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.$C_VERSION }}
-          release_name: Release ${{ env.$C_VERSION }}
+          tag_name: ${{ env.C_VERSION }}
+          release_name: Release ${{ env.C_VERSION }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
