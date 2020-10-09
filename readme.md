@@ -5,9 +5,9 @@ An attempt at using the swiss army knife MagickWand libraries to make printing p
 ```bash
 cardtage -h
 Cardtage does one thing and it does that one thing really-mediocerly.
-                                Give it files, tell it how far to space them, and tell it the size of page
-                                you'd like to make (like 8.5x11) and tada! A montage of those images.
-                                Useful for printing diy playing cards
+Give it files, tell it how far to space them, and tell it the size of page
+you'd like to make (like 8.5x11) and tada! A montage of those images.
+Useful for printing diy playing cards
 
 Usage:
   cardtage [flags]
