@@ -1,5 +1,5 @@
 # Cardtage
-An attempt at using the swiss army knife MagickWand libraries to make printing playing cards easier.
+An attempt at using the swiss army knife [MagickWand](https://github.com/ImageMagick/ImageMagick/tree/master/MagickWand) in order to make printing playing cards easier. Specifically, it uses the `montage` capabilities of ImageMagick - hence the name `cardtage`, lol.
 
 # Usage
 ```bash
@@ -28,16 +28,16 @@ Flags:
 Use "cardtage [command] --help" for more information about a command.
 ```
 
-# Examples
-1. Download
-2. Convert 
+# Getting Started
+1. Download [here](https://github.com/bamItsCam/cardtage/releases)
+2. example call (see [the example dir for sample inputs and outputs](example))
     ```bash
     $ cardtage "input/*" -c "2.64x1.73" -b 0.01 -p "8.5x11" -m "0.25x0.25" -d 200 out.pdf
     Writing montage to: 'out.pdf'...
     Complete.
     ```
 
-# TODO:
+# TODO
 1. Tests
 2. The ability to take a csv that specifies quantity for each image
 3. maybe make `--border` follow the same format that the other params use, "WxH"
