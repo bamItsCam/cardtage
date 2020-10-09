@@ -5,7 +5,6 @@ import (
 	"github.com/bamItsCam/cardtage/internal/cardtage"
 	"github.com/spf13/cobra"
 	"gopkg.in/gographics/imagick.v2/imagick"
-	"github.com/spf13/pflag"
 )
 
 var (
