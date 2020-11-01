@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/bamItsCam/cardtage/internal/cardtage"
+	"github.com/bamItsCam/cardtage/pkg/cardtage"
 	"github.com/spf13/cobra"
 	"gopkg.in/gographics/imagick.v2/imagick"
 )

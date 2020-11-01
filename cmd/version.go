@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/bamItsCam/cardtage/internal/version"
+	"github.com/bamItsCam/cardtage/pkg/version"
 	"github.com/spf13/cobra"
 )
 
