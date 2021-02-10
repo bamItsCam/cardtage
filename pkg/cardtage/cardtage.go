@@ -50,7 +50,7 @@ func (c *CardtageImpl) getExtentOffsetX() int {
 }
 
 func (c *CardtageImpl) getExtentOffsetY() int {
-	return int(-c.PageMarginWidthU * c.Density)
+	return int(-c.PageMarginHeightU * c.Density)
 }
 
 func (c *CardtageImpl) Generate() (err error) {
